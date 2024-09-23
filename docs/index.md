@@ -8,10 +8,12 @@ Chaque mesure a été réalisé grâce au fichier tris.py dans lequel chaque tri
 
 ### 1. Tri par sélection
 Le tri par sélection consiste à parcourir la liste pour trouver le plus petit élément afin de le placer en première position, puis à parcourir à nouveau la liste pour trouver le deuxième plus petit élément et le placer en deuxième position, et ainsi de suite jusqu'à ce que l'intégralité du tableau soit triée.
-- **Complexité Temps** : O(n²)
-- **Complexité Mémoire** : O(1)
-- **Avantages** : Simple à implémenter, efficace pour les petites listes.
-- **Inconvénients** : Lent sur les grandes listes.  
+  
+- **Complexité Temps** : O(n²)  
+- **Complexité Mémoire** : O(1)  
+- **Avantages** : Simple à implémenter, efficace pour les petites listes.  
+- **Inconvénients** : Lent sur les grandes listes.    
+  
 ```pseudo
   procédure tri_selection(tableau t)
       n ← longueur(t) 
