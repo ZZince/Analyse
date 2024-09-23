@@ -17,13 +17,13 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Generate PDF documentation
-        run: pandoc -o docs.pdf index.md  
+        run: pandoc -o docs/docs.pdf docs/index.md  
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
           name: docs-pdf
-          path: docs.pdf
+          path: docs/docs.pdf
 
   deploy-mkdocs:
     runs-on: ubuntu-latest
