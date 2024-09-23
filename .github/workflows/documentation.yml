@@ -1,0 +1,46 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Pandoc
+        run: sudo apt-get install -y pandoc
+
+      - name: Generate PDF documentation
+        run: pandoc -o docs.pdf index.md  
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs-pdf
+          path: docs.pdf
+
+  deploy-mkdocs:
+    runs-on: ubuntu-latest
+    needs: build-pdf 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' 
+
+      - name: Install MkDocs and plugins
+        run: |
+          pip install mkdocs
+          pip install mkdocs-material 
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
